@@ -56,7 +56,7 @@ class Ai:
         engine.runAndWait()
     
     def update_ai(self):
-        url = ''
+        url = 'https://raw.githubusercontent.com/shrihari272/Artificial_intelligence/main/project2_jarvis_ai.py'
         r = requests.get(url, stream = True)
         with open("project2_jarvis_ai.py", "wb") as f:
             total_length = int(r.headers.get('content-length'))
