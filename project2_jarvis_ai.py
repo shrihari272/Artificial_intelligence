@@ -126,13 +126,12 @@ class Ai:
                 async def getweather():
                         client = python_weather.Client(format=python_weather.IMPERIAL)
                         place = self.word
-                        rl = True
-                        print(place)
                         weather = await client.find(place)
                         for forecast in weather.forecasts:
                             if self.now.strftime('%d') in str(forecast.date): 
                                 self.talk(forecast.sky_text + ' and temperature will be ' + str(forecast.temperature) + ' degree celcius')
                         await client.close()
+                        
                 loop = asyncio.get_event_loop()
                 loop.run_until_complete(getweather())
             except:
