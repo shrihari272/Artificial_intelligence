@@ -43,13 +43,15 @@ class Ai:
             print('Recognizing...')
             self.word = r.recognize_google(audio, language='en-in')
             print('User: ' + self.word)
-        except sr.UnknownValueError:
-            try:
+        except:
+            connect = self.is_connected()
+            if connect:
+               self.mycommand()
+            else:
+                self.talk('Reconnecting...')
+                time.sleep(10)
                 self.mycommand()
-            except sr.speech_recognition.RequestError:
-                self.talk('Connection lost')
         
-    
     def talk(self,audio):
         print('Computer: ' + audio)
         engine.say(audio)
@@ -148,17 +150,16 @@ class Ai:
                     self.talk(answer)
             except:
                 try:
-                    self.talk('Searching Wikipedia...')
                     results = wikipedia.summary(self.word, sentences=2)
+                    self.talk('Searching Wikipedia...')
                     self.talk('Got it.')
-                    self.talk('According to Wikipedia.')
                     self.future = False
                     self.talk(results)
                 except:
                     self.future = False
                     self.google_search()
 
-    def Search(self):
+    def search(self):
         self.word =self.word.lower()
         if 'where is' in self.word  or 'locate' in  self.word:
             self.future = False
@@ -221,28 +222,22 @@ class Ai:
             subprocess.call("shutdown / h")
 
     def run_ai(self):
-        connect = self.is_connected()
-        if connect:
-            self.mycommand()
-            self.future = True
-            self.word =self.word.lower()
-            if 'jarvis' in self.word:
-                self.word = self.word.replace('jarvis' ,'')
-                if 'exit' in self.word:
-                    self.talk('Okay')
-                    sys.exit()
-                if ai.future:
-                    ai.greeting_user()
-                if ai.future:
-                    ai.weathereport()
-                if ai.future:
-                    self.analyze()
-                if ai.future:
-                    self.Search()
-        else:
-            self.talk('Reconnecting...')
-            time.sleep(10)
-
+        self.mycommand()
+        self.future = True
+        self.word =self.word.lower()
+        if 'jarvis' in self.word:
+            self.word = self.word.replace('jarvis' ,'')
+            if 'exit' in self.word:
+                self.talk('Okay')
+                sys.exit()
+            if ai.future:
+                ai.greeting_user()
+            if ai.future:
+                ai.weathereport()
+            if ai.future:
+                self.analyze()
+            if ai.future:
+                self.search()
 
 ai = Ai()
 if ai.is_connected():
@@ -280,4 +275,4 @@ ai.talk("Hello my name is Jarvis. Version 1.0")
 ai.talk("I am your AI Assistant")
 
 while True:
-    ai.run_ai()    
+    ai.run_ai()  
