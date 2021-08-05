@@ -1,0 +1,16 @@
+visualstudiocode vscode
+C:\Users\shrih\AppData\Local\Programs\Microsoft VS Code\Code.exe
+thispc mycomputer
+explorer
+steam 
+C:\Program Files (x86)\Steam\steam.exe
+pycharm 
+C:\Program Files\JetBrains\PyCharm Community Edition 2021.1.2\bin\pycharm64.exe
+chrome Chrome
+C:\Program Files\Google\Chrome\Application\chrome.exe
+discord
+C:\Users\shrih\AppData\Local\Discord\app-1.0.9002\Discord.exe
+firefox
+C:\Program Files\Mozilla Firefox\firefox.exe
+blue stacks bluestacks
+C:\ProgramData\BlueStacks\Client\Bluestacks.exe
